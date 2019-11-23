@@ -39,6 +39,7 @@ A CLI tool that generates `tf` and `tfstate` files based on existing infrastruct
         * [Datadog](#use-with-datadog)
         * [New Relic](#use-with-new-relic)
     * Community
+        * [Keycloak](#use-with-keycloak)
         * [Logz.io](#use-with-logzio)
         * [Commercetools](#use-with-commercetools)
 - [Contributing](#contributing)
@@ -196,6 +197,7 @@ Links to download Terraform Providers:
     * Datadog provider >2.1.0 - [here](https://releases.hashicorp.com/terraform-provider-datadog/)
     * New Relic provider >1.5.0 - [here](https://releases.hashicorp.com/terraform-provider-newrelic/)
 * Community
+    * Keycloak provider >=1.12.0 - [here](https://github.com/mrparkers/terraform-provider-keycloak/)
     * Logz.io provider >=1.1.1 - [here](https://github.com/jonboydell/logzio_terraform_provider/)
     * Commercetools provider >= 0.19.0 - [here](https://github.com/labd/terraform-provider-commercetools)
 
@@ -952,6 +954,36 @@ List of supported New Relic resources:
 *   `synthetics`
     * `newrelic_synthetics_monitor`
     * `newrelic_synthetics_alert_condition`
+
+### Use with Keycloak
+
+Example:
+
+```
+ export KEYCLOAK_URL=https://foo.bar.localdomain
+ export KEYCLOAK_CLIENT_ID=[KEYCLOAK_CLIENT_ID]
+ export KEYCLOAK_CLIENT_SECRET=[KEYCLOAK_CLIENT_SECRET]
+
+ terraformer import rabbitmq --resources=realms,openid_clients
+ terraformer import rabbitmq --resources=realms --filter=rabbitmq_realm=name1:name2:name3
+```
+
+All Keycloak resources that are currently supported by the Keycloak provider, are also supported by this module. Here is the list of resources which are currently supported by Keycloak provider v.1.12.0:
+
+- `realms`
+  - `keycloak_realm`
+  - `keycloak_required_action`
+- `openid_clients`
+  - `keycloak_openid_client`
+- `users`
+  - `keycloak_user`
+- `roles`
+  - `keycloak_role`
+- `groups`
+  - `keycloak_group`
+  - `keycloak_default_groups`
+  - `keycloak_group_memberships`
+  - `keycloak_group_roles`
 
 ### Use with Logz.io
 
